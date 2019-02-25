@@ -10,6 +10,8 @@ end
 feature 'List bookmark list' do
   scenario ' displays bookmark list' do
     visit '/bookmarks'
-    expect(page).to have_content(['x', 'y', 'z'])
+    expect(page).to have_content('http://www.makersacademy.com')
+    expect(page).to have_content('http://www.google.com')
+    expect(page).to have_content('http://www.destroyallsoftware.com')
   end
 end
