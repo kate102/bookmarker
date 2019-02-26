@@ -1,14 +1,23 @@
 require './app'
+# require_relative './setup_test_database'
 
-feature 'Bookmarks home page' do
-  scenario 'displays Bookmark Manager heading' do
-    visit '/bookmarks'
-    expect(page).to have_content('Bookmark Manager')
+ENV['ENVIRONMENT'] = 'test'
+
+RSpec.configure do |config|
+  config.before(:each) do
+    setup_test_database
   end
 end
 
 feature 'List bookmark list' do
   scenario ' displays bookmark list' do
+    connection = PG.connect(dbname: 'bookmark_manager_test')
+
+    # Add the test data
+    connection.exec("INSERT INTO bookmarks VALUES(1, 'http://www.makersacademy.com');")
+    connection.exec("INSERT INTO bookmarks VALUES(2, 'http://www.destroyallsoftware.com');")
+    connection.exec("INSERT INTO bookmarks VALUES(3, 'http://www.google.com');")
+
     visit '/bookmarks'
     expect(page).to have_content('http://www.makersacademy.com')
     expect(page).to have_content('http://www.google.com')
