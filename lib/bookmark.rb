@@ -1,6 +1,10 @@
 require 'pg'
 
 class Bookmark
+  #
+  def initialize(url ="/")
+    @url = url
+  end
 
   def all
     if ENV['ENVIRONMENT'] == 'test'

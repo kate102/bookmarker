@@ -23,4 +23,14 @@ feature 'List bookmark list' do
     expect(page).to have_content('http://www.google.com')
     expect(page).to have_content('http://www.destroyallsoftware.com')
   end
+
+  feature 'adding a bookmark' do
+    scenario 'adds a bookmark' do
+      visit('/bookmarks/new')
+      fill_in('url', with: 'http://www.facebook.com')
+      click_button('Submit')
+      expect(page).to have_content('http://www.facebook.com')
+    end
+  end
+
 end
