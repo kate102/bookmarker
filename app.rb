@@ -10,8 +10,8 @@ class BookmarkManager < Sinatra::Base
   end
 
   get '/bookmarks' do
-    bookmarks = Bookmark.new
-    @x = bookmarks.all
+    @bookmarks = Bookmark.all
+    # @x = bookmarks.all
     erb :index
   end
 
@@ -20,9 +20,7 @@ class BookmarkManager < Sinatra::Base
   end
 
   post '/bookmarks' do
-    url = params['url']
-    connection = PG.connect(dbname: 'bookmark_manager_test')
-    connection.exec("INSERT INTO bookmarks (url) VALUES('#{url}')")
+    Bookmark.create(url: params[:url])
     redirect '/bookmarks'
   end
 
