@@ -16,7 +16,12 @@ class BookmarkManager < Sinatra::Base
   # KM Why does the perfect soln go to 'bookmarks/index'?
   get '/bookmarks' do
     @bookmarks = Bookmark.all
+<<<<<<< HEAD
     erb :"index"
+=======
+    # @x = bookmarks.all
+    erb :index
+>>>>>>> 320ff8c1f50cb84f9fae826fd31bdd8cc5dfe027
   end
 
   get '/bookmarks/new' do
@@ -24,9 +29,7 @@ class BookmarkManager < Sinatra::Base
   end
 
   post '/bookmarks' do
-    url = params['url']
-    connection = PG.connect(dbname: 'bookmark_manager_test')
-    connection.exec("INSERT INTO bookmarks (url) VALUES('#{url}')")
+    Bookmark.create(url: params[:url])
     redirect '/bookmarks'
   end
 
