@@ -6,7 +6,7 @@ class Bookmark
     @url = url
   end
 
-  def all
+  def self.all
     if ENV['ENVIRONMENT'] == 'test'
       con = PG.connect :dbname => 'bookmark_manager_test', :user => 'student'
     else

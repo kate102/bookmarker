@@ -5,14 +5,18 @@ class BookmarkManager < Sinatra::Base
 
   enable :sessions
 
+  # What is the point of this?
+  # Where does it go now?
+  # Presumably we update this title page later?!?
   get '/' do
     'Bookmark Manager'
   end
 
+  # This lists all of the bookmarks in the database
+  # KM Why does the perfect soln go to 'bookmarks/index'?
   get '/bookmarks' do
-    bookmarks = Bookmark.new
-    @x = bookmarks.all
-    erb :index
+    @bookmarks = Bookmark.all
+    erb :"index"
   end
 
   get '/bookmarks/new' do
