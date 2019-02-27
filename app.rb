@@ -1,9 +1,9 @@
 require 'sinatra/base'
-require './lib/bookmark'
+require_relative './lib/bookmark'
 
 class BookmarkManager < Sinatra::Base
 
-  enable :sessions
+  # enable :sessions
 
   # What is the point of this?
   # Where does it go now?
@@ -16,12 +16,7 @@ class BookmarkManager < Sinatra::Base
   # KM Why does the perfect soln go to 'bookmarks/index'?
   get '/bookmarks' do
     @bookmarks = Bookmark.all
-<<<<<<< HEAD
-    erb :"index"
-=======
-    # @x = bookmarks.all
-    erb :index
->>>>>>> 320ff8c1f50cb84f9fae826fd31bdd8cc5dfe027
+    erb :"/bookmarks/index"
   end
 
   get '/bookmarks/new' do
