@@ -12,9 +12,9 @@ class Bookmark
 
   def self.connect_to_database
     if ENV['ENVIRONMENT'] == 'test'
-      PG.connect :dbname => 'bookmark_manager_test', :user => 'student'
+      PG.connect :dbname => 'bookmark_manager_test', :user => 'James'
     else
-      PG.connect :dbname => 'bookmark_manager', :user => 'student'
+      PG.connect :dbname => 'bookmark_manager', :user => 'James'
     end
 
   end

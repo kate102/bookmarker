@@ -1,0 +1,20 @@
+<h1>Bookmark Manager</h1>
+<% @bookmarks.each do |bookmark| %>
+  <a href="<%= bookmark.url %> "> <%= bookmark.title %> </a>
+  <br/>
+<% end %>
+
+<form action="/" method="post">
+  <input type="text" name="url" />
+  <input type="text" name="title" />
+  <input type="submit" value="Add Bookmark" />
+</form>
+
+<form action="/delete" method="post">
+  <select name='title'>
+    <% @bookmarks.each do |bookmark| %>
+      <option value="<%= bookmark.title %>"><%= bookmark.title %> </option>
+    <% end %>
+  </select>
+  <input type="submit" value="Delete" />
+</form>

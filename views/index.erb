@@ -1,0 +1,23 @@
+  Bookmark Manager
+<ul>
+  <% @bookmarks.each do |bookmark| %>
+    <li><%= bookmark.url %><%= bookmark.title %> </li>
+  <% end %>
+</ul>
+
+<form action="/" method="post">
+  <input type="text" name="url" />
+  <input type="text" name="title" />
+  <input type="submit" value="Submit" />
+</form>
+
+<form action="/delete" method="post">
+  <ul>
+  <select name='title'>
+    <% @bookmarks.each do |bookmark| %>
+      <li><option value="<%= bookmark.title %>"><%= bookmark.title %> </option></li>
+    <% end %>
+  </select>
+  </ul>
+  <input type="submit" value="Delete" />
+</form>

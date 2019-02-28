@@ -8,34 +8,23 @@ class BookmarkManager < Sinatra::Base
   # What is the point of this?
   # Where does it go now?
   # Presumably we update this title page later?!?
-  get '/' do
-    'Bookmark Manager'
-  end
 
   # This lists all of the bookmarks in the database
   # KM Why does the perfect soln go to 'bookmarks/index'?
-  get '/bookmarks' do
+  get '/' do
     @bookmarks = Bookmark.all
-    erb :"/bookmarks/list_bookmarks"
+    erb :bookmarks
   end
 
-  get '/bookmarks/new' do
-    erb :"/bookmarks/new"
-  end
-
-  post '/bookmarks' do
+  post '/' do
+    @bookmarks = Bookmark.all
     Bookmark.create(url: params[:url], title: params[:title])
-    redirect '/bookmarks'
+    redirect '/'
   end
 
-  get '/bookmarks/delete' do
-    @bookmarks = Bookmark.all
-    erb :"/bookmarks/delete"
-  end
-
-  post '/bookmarks/delete' do
+  post '/delete' do
     Bookmark.delete(title: params[:title])
-    redirect '/bookmarks'
+    redirect '/'
   end
 
   run! if app_file == $0

@@ -7,11 +7,10 @@ ENV['ENVIRONMENT'] = 'test'
 
 feature 'adding a bookmark' do
   scenario 'adds a bookmark' do
-    visit('/bookmarks/new')
-    fill_in('url', with: 'http://www.facebook.com')
-    fill_in('title', with: 'Facebook')
-    click_button('Submit')
-    expect(page).to have_content('http://www.facebook.com')
-    expect(page).to have_content('Facebook')
+    visit('/')
+    fill_in 'url', with: 'https://www.facebook.com'
+    fill_in 'title', with: 'Facebook'
+    click_button 'Add Bookmark'
+    expect(page).to have_link("Facebook", :href => "https://www.facebook.com")
   end
 end
