@@ -32,4 +32,11 @@ describe 'Bookmark behaviour' do
     expect(bookmark.title).to eq 'Facebook'
   end
 
+  it 'it deletes a bookmark' do
+    bookmark = Bookmark.create(url: 'http://www.facebook.com', title: 'Facebook')
+    bookmark = Bookmark.delete(title: 'Facebook')
+    bookmarks = Bookmark.all
+    # persisted_data = persisted_data(id: bookmark.id)
+    expect(bookmarks.include?(bookmark)) == false
+  end
 end

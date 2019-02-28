@@ -36,4 +36,10 @@ class Bookmark
       title: result[0]['title'])
   end
 
+
+    def self.delete(title:)
+      con = connect_to_database
+      result = con.exec("DELETE FROM bookmarks WHERE title = '#{title}';")
+    end
+
 end
