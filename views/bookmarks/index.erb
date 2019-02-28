@@ -8,7 +8,7 @@
   Bookmark Manager
 <ul>
     <% @bookmarks.each do |bookmark| %>
-      <li><%= bookmark.url %></li>
+      <li><%= bookmark.url %><%= bookmark.title %> </li>
     <% end %>
   </ul>
   <!-- </body>
