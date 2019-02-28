@@ -16,7 +16,7 @@ class BookmarkManager < Sinatra::Base
   # KM Why does the perfect soln go to 'bookmarks/index'?
   get '/bookmarks' do
     @bookmarks = Bookmark.all
-    erb :"/bookmarks/index"
+    erb :"/bookmarks/list_bookmarks"
   end
 
   get '/bookmarks/new' do
