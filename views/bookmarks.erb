@@ -1,20 +1,31 @@
 <h1>Bookmark Manager</h1>
+
+<h3>Bookmark List</h3>
+<div>Please click on a title to be taken to the website <br /></div>
 <% @bookmarks.each do |bookmark| %>
   <a href="<%= bookmark.url %> "> <%= bookmark.title %> </a>
   <br/>
 <% end %>
+<br />
 
-<form action="/" method="post">
-  <input type="text" name="url" />
-  <input type="text" name="title" />
+<br />
+<h3>Adding a Bookmark</h3>
+<div>Please enter title and url in the boxes below<br /></div>
+<form action="/add" method="post">
+  <input type="text" placeholder="Title" name="title" />
+  <input type="text" placeholder="url" name="url" />
+
   <input type="submit" value="Add Bookmark" />
 </form>
 
+<br />
+<h3>Deleting a Bookmark</h3>
+<div>Please select the titleof the bookmark you would like to delete<br /></div>
 <form action="/delete" method="post">
   <select name='title'>
     <% @bookmarks.each do |bookmark| %>
       <option value="<%= bookmark.title %>"><%= bookmark.title %> </option>
     <% end %>
   </select>
-  <input type="submit" value="Delete" />
+  <input type="submit" value="Delete Bookmark" />
 </form>

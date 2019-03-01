@@ -12,9 +12,9 @@ class Bookmark
 
   def self.connect_to_database
     if ENV['ENVIRONMENT'] == 'test'
-      PG.connect :dbname => 'bookmark_manager_test', :user => 'James'
+      PG.connect :dbname => 'bookmark_manager_test', :user => 'student'
     else
-      PG.connect :dbname => 'bookmark_manager', :user => 'James'
+      PG.connect :dbname => 'bookmark_manager', :user => 'student'
     end
 
   end
@@ -28,7 +28,7 @@ class Bookmark
     end
   end
 
-  def self.create(url:, title:)
+  def self.add(url:, title:)
     con = connect_to_database
     result = con.exec("INSERT INTO bookmarks (url, title)
       VALUES('#{url}', '#{title}') RETURNING id, url, title;")
@@ -36,10 +36,9 @@ class Bookmark
       title: result[0]['title'])
   end
 
-
-    def self.delete(title:)
-      con = connect_to_database
-      result = con.exec("DELETE FROM bookmarks WHERE title = '#{title}';")
-    end
+  def self.delete(title:)
+    con = connect_to_database
+    con.exec("DELETE FROM bookmarks WHERE title = '#{title}';")
+  end
 
 end
